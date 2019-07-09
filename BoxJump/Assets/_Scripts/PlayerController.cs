@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D body;
     BoxCollider2D boxCollider;
     LineRenderer lineRenderer;
+
     bool isPressed;
     Vector2 startInputPosition;
     Vector2 endInputPosition;
     Vector2 leftDownCorner;
     Vector2 rightDownCorner;
     bool isOnGround;
+    bool doubleJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,34 +80,45 @@ public class PlayerController : MonoBehaviour
 
         if(leftInfo.collider == null && rightInfo.collider == null)
         {
+            
             isOnGround = false;
         }
         else
         {
+            
             if(isOnGround == false)
             {
                 OnLanding();
             }
+            doubleJump = true;
             isOnGround = true;
         }
     }
 
     private void MouseDown()
     {
-        lineRenderer.enabled = true;
-        startInputPosition = Input.mousePosition;
-        isPressed = true;
+        if(isOnGround || doubleJump)
+        {
+            lineRenderer.enabled = true;
+            startInputPosition = Input.mousePosition;
+            isPressed = true;
+            if (isOnGround == false) doubleJump = false;
+        }
+        
     }
     private void MouseUp()
     {
-
-        lineRenderer.enabled = false;
-        Vector2 direction = startInputPosition - endInputPosition;
-        direction.Normalize();
-        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition));
-        if (distance > maxPower) distance = maxPower;
-        body.AddForce(direction*distance*powerMultiplier,ForceMode2D.Impulse);
-        isPressed = false;
+        if (isPressed)
+        {
+            lineRenderer.enabled = false;
+            Vector2 direction = startInputPosition - endInputPosition;
+            direction.Normalize();
+            float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition));
+            if (distance > maxPower) distance = maxPower;
+            body.AddForce(direction * distance * powerMultiplier, ForceMode2D.Impulse);
+            isPressed = false;
+        }
+        
     }
 
     protected virtual void OnLanding()

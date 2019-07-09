@@ -16,14 +16,14 @@ public class Spawner : MonoBehaviour
     {
         platforms = new Queue<GameObject>();
         body = player.gameObject.GetComponent<Rigidbody2D>();
-        SpawnNewPlatform();
+        SpawnNewPlatform(GameManager.instance.score);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(player.transform.position, lastPlatform.position) < 10) SpawnNewPlatform();
-        if (Vector2.Distance(player.transform.position, lastPlatform.position) > 25) GameManager.instance.GameOver();
+        if (Vector2.Distance(player.transform.position, lastPlatform.position) < 10) SpawnNewPlatform(GameManager.instance.score);
+        if (Vector2.Distance(player.transform.position, lastPlatform.position) > 30) GameManager.instance.GameOver();
     }
     float LowestPoint()
     {
@@ -35,9 +35,20 @@ public class Spawner : MonoBehaviour
         }
         return lowest;
     }
-    void SpawnNewPlatform()
+    void SpawnNewPlatform(int score)
     {
-        lastPlatform = Instantiate(platformObjects[UnityEngine.Random.Range(0,platformObjects.Length)],lastPlatform.position + Vector3.right * UnityEngine.Random.Range(7,13)+Vector3.up* UnityEngine.Random.Range(-3, 3), Quaternion.identity).transform;
+        if(score < 10)
+        {
+            lastPlatform = Instantiate(platformObjects[0], lastPlatform.position + Vector3.right * UnityEngine.Random.Range(7, 12) + Vector3.up * UnityEngine.Random.Range(-3, 3), Quaternion.identity).transform;
+        }
+        if(score >10 && score < 20)
+        {
+            lastPlatform = Instantiate(platformObjects[1], lastPlatform.position + Vector3.right * UnityEngine.Random.Range(7, 12) + Vector3.up * UnityEngine.Random.Range(-3, 3), Quaternion.identity).transform;
+        }
+        if(score > 20)
+        {
+            lastPlatform = Instantiate(platformObjects[2], lastPlatform.position + Vector3.right * UnityEngine.Random.Range(7, 12) + Vector3.up * UnityEngine.Random.Range(-3, 3), Quaternion.identity).transform;
+        }
        
         platforms.Enqueue(lastPlatform.gameObject);
        

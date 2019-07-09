@@ -14,7 +14,7 @@ public class RotatingPlatform : Platform
     void Start()
     {
         rotationRadius = Random.Range(1f, 3f);
-        angularSpeed = Random.Range(1f, 3f);
+        angularSpeed = Random.Range(1f, 2f);
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class RotatingPlatform : Platform
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        Destroy(this);
+        collision.collider.transform.SetParent(transform);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
