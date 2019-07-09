@@ -30,10 +30,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseDown();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            MouseUp();
+        }
+
         CheckForGround();
         if (isPressed)
         {
-            endInputPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            endInputPosition = Input.mousePosition;
             DrawLine();
         }
 
@@ -42,14 +51,16 @@ public class PlayerController : MonoBehaviour
     private void DrawLine()
     {
         Vector2 endLinePosition;
-        
-        if (Vector2.Distance(startInputPosition, endInputPosition) > maxPower)
+        Vector2 direction = endInputPosition - startInputPosition;
+        direction.Normalize();
+       
+        if (Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition)) > maxPower)
         {
-            endLinePosition = (Vector2)transform.position+(endInputPosition-startInputPosition).normalized*maxPower;
+            endLinePosition = (Vector2)transform.position+direction*maxPower;
         }
         else
         {
-            endLinePosition = endInputPosition;
+            endLinePosition = (Vector2)transform.position + direction * Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition));
         }
         Vector3[] positions = new Vector3[2];
         positions[0] = Vector3.zero;
@@ -79,19 +90,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    private void MouseDown()
     {
         lineRenderer.enabled = true;
-        startInputPosition = transform.position;
+        startInputPosition = Input.mousePosition;
         isPressed = true;
     }
-    private void OnMouseUp()
+    private void MouseUp()
     {
 
         lineRenderer.enabled = false;
         Vector2 direction = startInputPosition - endInputPosition;
         direction.Normalize();
-        float distance = Vector2.Distance(endInputPosition, startInputPosition);
+        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition));
         if (distance > maxPower) distance = maxPower;
         body.AddForce(direction*distance*powerMultiplier,ForceMode2D.Impulse);
         isPressed = false;

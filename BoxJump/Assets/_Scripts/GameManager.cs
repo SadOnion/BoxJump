@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public UIManager uI;
+
     public int score { get; private set; }
     // Start is called before the first frame update
-
+    private float color=.1f;
     private void Awake()
     {
         instance = this;
+ 
     }
     void Start()
     {
@@ -29,6 +31,9 @@ public class GameManager : MonoBehaviour
     {
         score++;
         uI.UpdateUI();
+        Camera.main.backgroundColor = new Color(1-color,color,color*color);
+        color += .1f;
+        if (color > 1) color = .1f;
     }
     
     public void GameOver()

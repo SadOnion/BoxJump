@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraBehavior : MonoBehaviour
 {
     public PlayerController player;
-    [Range(0,1)]
+    [Range(0,5)]
     public float smoothSpeed;
     public readonly float offset = 7;
     private Vector3 lastPosition;

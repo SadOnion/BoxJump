@@ -3,7 +3,7 @@
 public class Platform : MonoBehaviour
 {
     bool playerVisited;
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected  virtual void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         if (playerVisited == false && player.IsSafe())
