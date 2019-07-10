@@ -10,9 +10,8 @@ public class GameManager : MonoBehaviour
 
     public int score { get; private set; }
     // Start is called before the first frame update
-    private PlayerController player;
+    public PlayerController player;
     private Rigidbody2D playerBody;
-    private float color=.1f;
     private const int checkForGameOverTime = 1;
     private float timer;
     private void Awake()
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
-                Collider2D[] coliders  = Physics2D.OverlapBoxAll(player.transform.position + Vector3.down * 15, new Vector2(20, 25), 0);
+                Collider2D[] coliders  = Physics2D.OverlapBoxAll(player.transform.position + Vector3.down * 13+Vector3.right*14, new Vector2(25, 25), 0);
                 if (coliders.Length == 0) GameOver();
                 timer = checkForGameOverTime;
             }
@@ -51,9 +50,6 @@ public class GameManager : MonoBehaviour
     {
         score++;
         uI.UpdateUI();
-        Camera.main.backgroundColor = new Color(1-color,color,color*color);
-        color += .1f;
-        if (color > 1) color = .1f;
     }
     
     public void GameOver()
@@ -63,6 +59,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(new Vector3(-5,-1,0) + Vector3.down * 13, new Vector2(20, 25));
+        Gizmos.DrawWireCube(new Vector3(-5,-1,0) + Vector3.down * 12.5f+Vector3.right * 11.5f, new Vector2(25, 25));
     }
 }

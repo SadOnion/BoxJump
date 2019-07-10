@@ -45,5 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastPlatform: {fileID: 0}
   player: {fileID: 0}
-  simplePlatform: {fileID: 4971906800445113137, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05,
-    type: 3}
+  platformObjects:
+  - {fileID: 4971906800445113137, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05, type: 3}
+  - {fileID: 8202810294471244219, guid: 1e28cef55f1222c45b8aaae00b856ebb, type: 3}
+  - {fileID: 7526901463130512060, guid: c6b0a10ef5586a94680faf24fa364c67, type: 3}

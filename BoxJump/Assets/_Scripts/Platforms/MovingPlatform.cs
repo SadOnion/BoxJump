@@ -62,22 +62,22 @@ public class MovingPlatform : Platform
         {
             if (moveRight)
             {
-                body.MovePosition(new Vector2(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y));
+                transform.position = new Vector2(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y);
             }
             else
             {
-                body.MovePosition(new Vector2(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y));
+                transform.position = new Vector2(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y);
             }
         }
         else
         {
             if (moveUp)
             {
-                body.MovePosition(new Vector2(transform.position.x , transform.position.y + moveSpeed * Time.deltaTime));
+                transform.position = new Vector2(transform.position.x , transform.position.y + moveSpeed * Time.deltaTime);
             }
             else
             {
-                body.MovePosition(new Vector2(transform.position.x , transform.position.y - moveSpeed * Time.deltaTime));
+                transform.position = new Vector2(transform.position.x , transform.position.y - moveSpeed * Time.deltaTime);
             }
         }
         
