@@ -11,9 +11,6 @@ public class Platform : MonoBehaviour
             GameManager.instance.AddPoint();
             playerVisited = true;
         }
-        if(player.IsSafe() == false)
-        {
-            GameManager.instance.GameOver();
-        }
+       
     }
 }

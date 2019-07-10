@@ -10,11 +10,17 @@ public class GameManager : MonoBehaviour
 
     public int score { get; private set; }
     // Start is called before the first frame update
+    private PlayerController player;
+    private Rigidbody2D playerBody;
     private float color=.1f;
+    private const int checkForGameOverTime = 1;
+    private float timer;
     private void Awake()
     {
         instance = this;
- 
+        timer = checkForGameOverTime;
+        player = FindObjectOfType<PlayerController>();
+        playerBody = player.gameObject.GetComponent<Rigidbody2D>();
     }
     void Start()
     {
@@ -24,6 +30,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerBody.velocity.y < 0)
+        {
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                Collider2D[] coliders  = Physics2D.OverlapBoxAll(player.transform.position + Vector3.down * 15, new Vector2(20, 25), 0);
+                if (coliders.Length == 0) GameOver();
+                timer = checkForGameOverTime;
+            }
+        }
+        else
+        {
+            timer = checkForGameOverTime;
+        }
         
     }
 
@@ -40,5 +60,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(0);
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(new Vector3(-5,-1,0) + Vector3.down * 13, new Vector2(20, 25));
+    }
 }

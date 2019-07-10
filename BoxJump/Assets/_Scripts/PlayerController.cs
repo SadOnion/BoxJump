@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float powerMultiplier;
     public float maxPower;
     public event EventHandler Landing;
-
+    public float lineScaler;
     Rigidbody2D body;
     BoxCollider2D boxCollider;
     LineRenderer lineRenderer;
@@ -58,11 +58,11 @@ public class PlayerController : MonoBehaviour
        
         if (Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition)) > maxPower)
         {
-            endLinePosition = (Vector2)transform.position+direction*maxPower;
+            endLinePosition = (Vector2)transform.position+direction*maxPower*lineScaler;
         }
         else
         {
-            endLinePosition = (Vector2)transform.position + direction * Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition));
+            endLinePosition = (Vector2)transform.position + direction * Vector2.Distance(Camera.main.ScreenToWorldPoint(startInputPosition), Camera.main.ScreenToWorldPoint(endInputPosition))*lineScaler ;
         }
         Vector3[] positions = new Vector3[2];
         positions[0] = Vector3.zero;
@@ -75,8 +75,8 @@ public class PlayerController : MonoBehaviour
         leftDownCorner = boxCollider.bounds.min;
         rightDownCorner = leftDownCorner + Vector2.right * boxCollider.bounds.size.x;
 
-        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.5f);
-        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .5f);
+        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.2f);
+        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .2f);
 
         if(leftInfo.collider == null && rightInfo.collider == null)
         {
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(leftDownCorner,leftDownCorner+Vector2.down*.5f);
-        Gizmos.DrawLine(rightDownCorner,rightDownCorner+Vector2.down*.5f);
+        Gizmos.DrawLine(leftDownCorner,leftDownCorner+Vector2.down*.2f);
+        Gizmos.DrawLine(rightDownCorner,rightDownCorner+Vector2.down*.2f);
     }
 }
