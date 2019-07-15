@@ -11,10 +11,9 @@ public class ScoreAnimation : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        GameManager.instance.player.Landing += PointAnimation;
     }
 
-    void PointAnimation(object sender,EventArgs e)
+    public void PointAnimation()
     {
         anim.SetTrigger("Point");
     }

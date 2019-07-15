@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     public float powerMultiplier;
     public float maxPower;
     public event EventHandler Landing;
+    public GameObject particle;
     public float lineScaler;
     Rigidbody2D body;
     BoxCollider2D boxCollider;
     LineRenderer lineRenderer;
-
+    TrailRenderer trailRenderer;
     bool isPressed;
     Vector2 startInputPosition;
     Vector2 endInputPosition;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
@@ -128,6 +130,14 @@ public class PlayerController : MonoBehaviour
     public bool IsSafe()
     {
         return isOnGround;
+    }
+    public void Die()
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
+        trailRenderer.emitting = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        body.Sleep();
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
     }
     private void OnDrawGizmos()
     {

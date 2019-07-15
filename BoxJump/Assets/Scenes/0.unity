@@ -278,6 +278,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 758897109}
+    - target: {fileID: 1054578965684670096, guid: ea7bc416741fe1c46afcda5b226c3929,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1054578965684670062, guid: ea7bc416741fe1c46afcda5b226c3929,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -342,6 +347,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4971906800445113137, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05,
+        type: 3}
+      propertyPath: m_Name
+      value: SimpleGround
+      objectReference: {fileID: 0}
     - target: {fileID: 4971906800445113134, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -397,11 +407,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4971906800445113137, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05,
-        type: 3}
-      propertyPath: m_Name
-      value: SimpleGround
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5111791631173875565, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b6a31a8ea12bd4f42a6ca73dfbe72f05, type: 3}
@@ -425,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 5510301367935188157, guid: 6e78a6eeae454f94fb40ec579f45bc90,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88
+      value: -1.247
       objectReference: {fileID: 0}
     - target: {fileID: 5510301367935188157, guid: 6e78a6eeae454f94fb40ec579f45bc90,
         type: 3}

@@ -50,9 +50,15 @@ public class GameManager : MonoBehaviour
     {
         score++;
         uI.UpdateUI();
+        uI.ScoreAnimation();
     }
     
     public void GameOver()
+    {
+        player.Die();
+        Invoke("ReloadScene", .5f);
+    }
+    public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(0);
     }

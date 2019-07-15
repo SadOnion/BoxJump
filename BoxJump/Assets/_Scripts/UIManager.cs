@@ -6,11 +6,12 @@ using System;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    private ScoreAnimation scoreAnimation;
     byte r = 255, g = 0, b = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreAnimation = GetComponentInChildren<ScoreAnimation>();
     }
 
     // Update is called once per frame
@@ -24,7 +25,10 @@ public class UIManager : MonoBehaviour
         scoreText.text = GameManager.instance.score.ToString();
         scoreText.faceColor = NextColor();
     }
-
+    public void ScoreAnimation()
+    {
+        scoreAnimation.PointAnimation();
+    }
     private Color NextColor()
     {
        

@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     public PlayerController player;
     Rigidbody2D body;
     public GameObject[] platformObjects;
+    public GameObject coin;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(player.transform.position, lastPlatform.position) < 10) SpawnNewPlatform(GameManager.instance.score);
+        if (Mathf.Abs(player.transform.position.x-lastPlatform.position.x) < 10) SpawnNewPlatform(GameManager.instance.score);
         
     }
     
@@ -43,6 +44,11 @@ public class Spawner : MonoBehaviour
         }
         platforms.Enqueue(lastPlatform.gameObject);
         if (platforms.Count > 3) Destroy(platforms.Dequeue());
-       
+        if (UnityEngine.Random.Range(0, 6) == 3) SpawnCoin();
+    }
+
+    private void SpawnCoin()
+    {
+        Instantiate(coin,lastPlatform.position+ UnityEngine.Random.Range(-3, 3)*Vector3.right+ Vector3.up*UnityEngine.Random.Range(1, 6),Quaternion.identity);
     }
 }

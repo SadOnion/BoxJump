@@ -12,6 +12,9 @@ public class MoveLeft : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         body.velocity = new Vector2(speed,0);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameManager.instance.GameOver();
+    }
 
-    
 }
