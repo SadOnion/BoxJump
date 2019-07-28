@@ -6,7 +6,6 @@ public class Platform : MonoBehaviour
     protected  virtual void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-        
         if (playerVisited == false)
         {
             GameManager.instance.AddPoint();
