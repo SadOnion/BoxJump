@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1069151c8aa324f858dea586fb2f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteInAir: {fileID: -458641133534639524, guid: ce62a11046de03d4cbbad964d497022b,
+    type: 3}
   powerMultiplier: 5
   maxPower: 2
   particle: {fileID: 7743916586886524683, guid: ee28081fbba3daf4bb802ddf2825cd75,

@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D),typeof(BoxCollider2D))]
 public class PlayerController : MonoBehaviour
 {
+    public Sprite spriteInAir;
     public float powerMultiplier;
     public float maxPower;
     public event EventHandler Landing;
@@ -16,12 +17,14 @@ public class PlayerController : MonoBehaviour
     LineRenderer lineRenderer;
     TrailRenderer trailRenderer;
     bool isPressed;
+    Sprite defaultSprite;
     Vector2 startInputPosition;
     Vector2 endInputPosition;
     Vector2 leftDownCorner;
     Vector2 rightDownCorner;
     bool isOnGround;
     bool doubleJump;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        spriteRenderer= GetComponentInChildren<SpriteRenderer>();
+        defaultSprite = spriteRenderer.sprite;
     }
 
     // Update is called once per frame
@@ -82,12 +87,12 @@ public class PlayerController : MonoBehaviour
 
         if(leftInfo.collider == null && rightInfo.collider == null)
         {
-            
+            spriteRenderer.sprite = spriteInAir;
             isOnGround = false;
         }
         else
         {
-            
+            spriteRenderer.sprite = defaultSprite;
             if(isOnGround == false)
             {
                 OnLanding();
