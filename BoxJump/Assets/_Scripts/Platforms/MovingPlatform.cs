@@ -19,8 +19,9 @@ public class MovingPlatform : Platform
     bool moveRight;
     bool moveUp;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         range = Random.Range(.3f, maxRange);
         moveSpeed = Random.Range(.3f, maxSpeed);
         axis = (Axis)Random.Range(0, 2);
@@ -105,7 +106,7 @@ public class MovingPlatform : Platform
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collision.collider.transform.SetParent(null);
+        if(collision.gameObject.activeSelf)collision.collider.transform.SetParent(null);
 
     }
 

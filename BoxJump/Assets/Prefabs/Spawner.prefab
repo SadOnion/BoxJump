@@ -50,3 +50,4 @@ MonoBehaviour:
   - {fileID: 8202810294471244219, guid: 1e28cef55f1222c45b8aaae00b856ebb, type: 3}
   - {fileID: 7526901463130512060, guid: c6b0a10ef5586a94680faf24fa364c67, type: 3}
   coin: {fileID: 6664499965673849537, guid: 194df28acd8698c44b8de9b23a20b6e1, type: 3}
+  shield: {fileID: 2617775213773146527, guid: 90959081061820b47a3feab96045d7e5, type: 3}

@@ -12,9 +12,25 @@ public class MoveLeft : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         body.velocity = new Vector2(speed,0);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.instance.GameOver();
+        PlayerController player = GameManager.instance.player;
+        if(collision.GetComponent<PlayerController>() != null)
+        {
+            if (player.HasShield())
+            {
+                player.SetShield(false);
+
+                Destroy(gameObject);
+            }
+            else
+            {
+                GameManager.instance.GameOver();
+
+            }
+        }
+        
     }
+    
 
 }

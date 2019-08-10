@@ -2,10 +2,12 @@
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public GameObject gameOverPanel;
     private ScoreAnimation scoreAnimation;
     byte r = 255, g = 0, b = 0;
     // Start is called before the first frame update
@@ -28,6 +30,16 @@ public class UIManager : MonoBehaviour
     public void ScoreAnimation()
     {
         scoreAnimation.PointAnimation();
+    }
+    public void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+        StartCoroutine(FrezeTime(1f));
+    }
+    private IEnumerator FrezeTime(float secondsToFreze)
+    {
+        yield return new WaitForSeconds(secondsToFreze);
+        Time.timeScale = 0;
     }
     private Color NextColor()
     {

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public PlayerController player;
     private Rigidbody2D playerBody;
-    private const int checkForGameOverTime = 1;
+    private const float checkForGameOverTime = .8f;
     private float timer;
     private void Awake()
     {
@@ -29,13 +29,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (playerBody.velocity.y < 0)
         {
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
-                Collider2D[] coliders  = Physics2D.OverlapBoxAll(player.transform.position + Vector3.down * 13+Vector3.right*14, new Vector2(25, 25), 0);
+                Collider2D[] coliders  = Physics2D.OverlapBoxAll(player.transform.position + Vector3.down * 13+Vector3.right*12, new Vector2(25, 25), 0);
                 if (coliders.Length == 0) GameOver();
+                if(coliders.Length == 1)
+                {
+                    if (coliders[0] == player.GetComponent<Collider2D>()) GameOver();
+                }
                 timer = checkForGameOverTime;
             }
         }
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
         {
             timer = checkForGameOverTime;
         }
+        
         
     }
 
@@ -52,19 +58,23 @@ public class GameManager : MonoBehaviour
         uI.UpdateUI();
         uI.ScoreAnimation();
     }
-    
+    public void AddPoint(int amount)
+    {
+        score+=amount;
+        uI.UpdateUI();
+        uI.ScoreAnimation();
+    }
+
     public void GameOver()
     {
         player.Die();
-        Invoke("ReloadScene", .5f);
+        uI.ShowGameOverPanel();
     }
     public void ReloadScene()
     {
-        SceneManager.LoadSceneAsync(0);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(new Vector3(-5,-1,0) + Vector3.down * 12.5f+Vector3.right * 11.5f, new Vector2(25, 25));
-    }
+    
 }

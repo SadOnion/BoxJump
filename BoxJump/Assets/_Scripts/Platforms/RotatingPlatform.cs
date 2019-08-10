@@ -11,8 +11,9 @@ public class RotatingPlatform : Platform
 
     float posX, posY, angle = 0;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         rotationRadius = Random.Range(1f, 3f);
         angularSpeed = Random.Range(1f, 2f);
     }
@@ -34,7 +35,7 @@ public class RotatingPlatform : Platform
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collision.collider.transform.SetParent(null);
+        if (collision.gameObject.activeSelf) collision.collider.transform.SetParent(null);
 
     }
 }

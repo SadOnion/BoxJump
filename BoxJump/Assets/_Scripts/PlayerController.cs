@@ -7,10 +7,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Sprite spriteInAir;
+    public SpriteRenderer bubble;
     public float powerMultiplier;
     public float maxPower;
     public event EventHandler Landing;
     public GameObject particle;
+    public GameObject slimeParticle;
+    public GameObject stain;
     public float lineScaler;
     Rigidbody2D body;
     BoxCollider2D boxCollider;
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
     Vector2 rightDownCorner;
     bool isOnGround;
     bool doubleJump;
+    bool shield;
     SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
@@ -82,8 +86,8 @@ public class PlayerController : MonoBehaviour
         leftDownCorner = boxCollider.bounds.min;
         rightDownCorner = leftDownCorner + Vector2.right * boxCollider.bounds.size.x;
 
-        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.2f);
-        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .2f);
+        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.5f);
+        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .5f);
 
         if(leftInfo.collider == null && rightInfo.collider == null)
         {
@@ -139,14 +143,32 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         Instantiate(particle, transform.position, Quaternion.identity);
-        trailRenderer.emitting = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        body.Sleep();
-        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        gameObject.SetActive(false);
+        
+    }
+    public bool HasShield()
+    {
+        return shield;
+    }
+    public void SetShield(bool b)
+    {
+        bubble.enabled = b;
+        shield = b;
     }
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(leftDownCorner,leftDownCorner+Vector2.down*.2f);
         Gizmos.DrawLine(rightDownCorner,rightDownCorner+Vector2.down*.2f);
+    }
+    public BoxCollider2D GetCollider()
+    {
+        return boxCollider;
+    }
+    public GameObject MakeSlime()
+    {
+        Instantiate(slimeParticle, transform.position, Quaternion.identity);
+        GameObject o = Instantiate(stain, transform.position, Quaternion.Euler(0,0,UnityEngine.Random.Range(0,360)));
+        o.transform.localScale *= UnityEngine.Random.Range(1.25f, 2f);
+        return o;
     }
 }

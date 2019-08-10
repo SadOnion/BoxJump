@@ -22,7 +22,6 @@ public class SpriteRotator : MonoBehaviour
         }
         else
         {
-            Debug.Log("r");
             Rotate();
         }
     }
