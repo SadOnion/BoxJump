@@ -34,12 +34,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("Theme");
+        //Play("Theme");
     }
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
+        if(s.source.isPlaying == false)s.source.Play();
     }
     public bool IsPlaying(string name)
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -34,7 +35,21 @@ public class Platform : MonoBehaviour
     } 
     protected virtual void AddSlime(PlayerController player)
     {
+        PlayRandomSplashSound();
         player.MakeSlime().transform.SetParent(gameObject.transform);
     }
-    
+
+    private void PlayRandomSplashSound()
+    {
+        int r = UnityEngine.Random.Range(0, 2);
+        if(r == 0)
+        {
+            AudioManager.instance.Play("Splash1");
+        }
+        else
+        {
+            AudioManager.instance.Play("Splash2");
+
+        }
+    }
 }
