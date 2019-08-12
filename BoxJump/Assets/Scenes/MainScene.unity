@@ -435,6 +435,36 @@ MonoBehaviour:
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: 6a2507e42f184f449b66672636c999e1, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 1
+    source: {fileID: 0}
+  - name: ShieldPick
+    clip: {fileID: 8300000, guid: 7208cbc36f5e3724d81881fd22fb2529, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: ShieldPop
+    clip: {fileID: 8300000, guid: fe658850d35d6d2479ddba7f345bc346, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Coin
+    clip: {fileID: 8300000, guid: d2f8658616a8fcd4980f7525bdc84519, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: b14884ac764aa2d4fb922edf1f1b2ab5, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1176412633
 Transform:
   m_ObjectHideFlags: 0

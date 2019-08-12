@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
     {
         if (!collision.attachedRigidbody.isKinematic)
         {
+            AudioManager.instance.Play("Coin");
             GameManager.instance.AddPoint(score);
             Destroy(gameObject);
 

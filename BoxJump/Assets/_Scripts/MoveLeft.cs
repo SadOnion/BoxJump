@@ -25,7 +25,10 @@ public class MoveLeft : MonoBehaviour
             }
             else
             {
+                Destroy(gameObject);
+                AudioManager.instance.Play("Explosion");
                 GameManager.instance.GameOver();
+
 
             }
         }

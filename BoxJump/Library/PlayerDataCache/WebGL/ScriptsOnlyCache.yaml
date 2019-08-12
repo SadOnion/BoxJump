@@ -77,6 +77,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
@@ -388,7 +390,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 3ff09dd024e2a2b1b2123ba5673e720b
+      Hash: 99c3e2dae822934cfeb61dfa57a409c4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -785,4 +787,4 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - Assets/Scenes/MainScene.unity
-  playerPath: D:/Git/BoxJump/Build
+  playerPath: D:/Builds/BoxJumpQueen/Build

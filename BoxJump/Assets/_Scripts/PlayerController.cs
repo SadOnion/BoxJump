@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public float powerMultiplier;
     public float maxPower;
     public event EventHandler Landing;
-    public GameObject particle;
     public GameObject slimeParticle;
     public GameObject stain;
     public float lineScaler;
@@ -142,7 +141,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Die()
     {
-        Instantiate(particle, transform.position, Quaternion.identity);
+        MakeSlime();
         gameObject.SetActive(false);
         
     }
@@ -152,6 +151,8 @@ public class PlayerController : MonoBehaviour
     }
     public void SetShield(bool b)
     {
+        if (b) AudioManager.instance.Play("ShieldPick");
+        else AudioManager.instance.Play("ShieldPop");
         bubble.enabled = b;
         shield = b;
     }
