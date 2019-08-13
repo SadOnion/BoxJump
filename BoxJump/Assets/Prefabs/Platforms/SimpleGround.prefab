@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4971906800445113136}
   - component: {fileID: 5111791631173875565}
   - component: {fileID: 7075942293578409938}
+  - component: {fileID: -7322841081388630296}
   m_Layer: 0
   m_Name: SimpleGround
   m_TagString: Untagged
@@ -174,3 +175,14 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!210 &-7322841081388630296
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971906800445113137}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

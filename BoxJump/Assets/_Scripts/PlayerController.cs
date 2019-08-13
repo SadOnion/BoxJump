@@ -85,8 +85,8 @@ public class PlayerController : MonoBehaviour
         leftDownCorner = boxCollider.bounds.min;
         rightDownCorner = leftDownCorner + Vector2.right * boxCollider.bounds.size.x;
 
-        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.5f);
-        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .5f);
+        RaycastHit2D leftInfo = Physics2D.Raycast(leftDownCorner,Vector2.down,.15f);
+        RaycastHit2D rightInfo = Physics2D.Raycast(rightDownCorner, Vector2.down, .15f);
 
         if(leftInfo.collider == null && rightInfo.collider == null)
         {
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Die()
     {
-        MakeSlime();
+        AudioManager.instance.Play("Explosion");
         gameObject.SetActive(false);
         
     }
@@ -158,8 +158,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(leftDownCorner,leftDownCorner+Vector2.down*.2f);
-        Gizmos.DrawLine(rightDownCorner,rightDownCorner+Vector2.down*.2f);
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(leftDownCorner,leftDownCorner+Vector2.down*.15f);
+        Gizmos.DrawLine(rightDownCorner,rightDownCorner+Vector2.down*.15f);
     }
     public BoxCollider2D GetCollider()
     {

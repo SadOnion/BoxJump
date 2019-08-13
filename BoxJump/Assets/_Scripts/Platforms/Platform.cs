@@ -32,7 +32,11 @@ public class Platform : MonoBehaviour
     }
     IEnumerator CheckIfHitSide(PlayerController player)
     {
-        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        
         if (player.IsSafe() == false) GameManager.instance.GameOver();
     } 
     protected virtual void AddSlime(PlayerController player)

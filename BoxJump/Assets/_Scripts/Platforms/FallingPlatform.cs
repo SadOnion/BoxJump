@@ -22,5 +22,11 @@ public class FallingPlatform : Platform
         yield return new WaitForSeconds(.5f);
         body.bodyType = RigidbodyType2D.Dynamic;
         body.gravityScale = 2;
+        StartCoroutine(DeActivate());
+    }
+    private IEnumerator DeActivate()
+    {
+        yield return new WaitForSeconds(4);
+        gameObject.SetActive(false);
     }
 }
